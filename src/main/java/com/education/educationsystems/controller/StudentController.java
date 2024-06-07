@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.education.educationsystems.DTO.StudentDetailDTO;
 import com.education.educationsystems.entity.Student;
 import com.education.educationsystems.entity.StudentAnswer;
 import com.education.educationsystems.service.StudentService;
@@ -42,6 +44,11 @@ public class StudentController {
 	public List<StudentAnswer> retriveAllMark(@PathVariable Long id){
 //		System.out.println(id);
 		return studentService.retriveAllMark(id);
+	}
+		
+	@GetMapping("/retrive-student-detail")
+	public StudentDetailDTO retriveStudentDetail(@RequestParam Long studentId,@RequestParam Long courseId) {
+		return studentService.retriveStudentDetail(studentId, courseId);
 	}
 	
 	

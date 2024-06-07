@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class Student {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,5 +22,10 @@ public class Student {
 	private String address;
 	@ManyToOne
 	private School school;
+	public Student() {}
+	
+	public Student(Long student) {
+		this.id=student;
+	}
 	
 }

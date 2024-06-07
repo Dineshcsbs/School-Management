@@ -1,19 +1,19 @@
 package com.education.educationsystems.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
 
-//@Accessors(fluent = true, chain = true)
-@Getter 
-@Setter
+
+@Data 
+@Builder
 public class StudentDetailDTO {
 
-
+	private String schoolName;
 	private Long studentId;
-
 	private String name;
-
 	private String course;
+	private int mark;
+	
 	
 }

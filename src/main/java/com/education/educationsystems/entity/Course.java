@@ -12,9 +12,21 @@ import lombok.Data;
 @Data
 public class Course {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
+	public Course() {
+        
+    }
+	
+	public Course(Long id) {
+        this.id = id;
+    }
+//	public static Course getId(Long courseId) {
+//		// TODO Auto-generated method stub
+//		return 
+//	}
 }
