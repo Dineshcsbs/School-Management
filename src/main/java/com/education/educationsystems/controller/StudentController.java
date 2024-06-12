@@ -2,7 +2,6 @@ package com.education.educationsystems.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.education.educationsystems.DTO.StudentDetailDTO;
+import com.education.educationsystems.entity.MarkManagement;
 import com.education.educationsystems.entity.Student;
 import com.education.educationsystems.entity.StudentAnswer;
 import com.education.educationsystems.service.StudentService;
@@ -35,8 +35,8 @@ public class StudentController {
 		return studentService.deleteByIdRecord(id);
 	}
 	
-	@GetMapping("/specific-mark/{id1}/{id2}")
-	public Optional<StudentAnswer> retriveMark(@PathVariable("id1") Long studentId,@PathVariable("id2") Long courseId) {
+	@GetMapping("/specific-mark")
+	public MarkManagement retriveMark(@RequestParam Long studentId,@RequestParam Long courseId) {
 		return studentService.retriveMark(studentId,courseId);
 	}
 	
@@ -50,6 +50,18 @@ public class StudentController {
 	public StudentDetailDTO retriveStudentDetail(@RequestParam Long studentId,@RequestParam Long courseId) {
 		return studentService.retriveStudentDetail(studentId, courseId);
 	}
+	@GetMapping("/search")
+	public List<Student> searchStudent(@RequestParam(required=false) String name,@RequestParam(required=false) Long schoolId,@RequestParam(required=false) String address){
+		return studentService.searchStudent(name,schoolId,address);
+	}
 	
+	@GetMapping("/search/name")
+	public List<Student> searchStudentName(@RequestParam String name){
+		return studentService.searchStudentName(name);
+	}
+	@GetMapping("/search/address")
+	public List<Student> searchAddress(@RequestParam String address){
+		return studentService.searchAddress(address);
+	}
 	
 }

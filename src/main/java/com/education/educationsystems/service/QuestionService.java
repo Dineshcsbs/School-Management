@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.education.educationsystems.DTO.QuestionDTO;
@@ -22,6 +23,7 @@ public class QuestionService {
 	public Question createQuestion(Question question) {
 		return questionRepository.save(question);
 	}
+	
 	public List<QuestionDTO> displayQuestion(Long courseId) {
 		
 		List<QuestionDTO> listOfQuestion=new LinkedList<>();
@@ -36,9 +38,9 @@ public class QuestionService {
 		return listOfQuestion;
 	}
 	
-	public Page<QuestionDTO> pageConcept(int offSet,int pageSize){
-		
-		Page<Question> responce=questionRepository.findAll(PageRequest.of(offSet,pageSize));
+	public Page<QuestionDTO> pageConcept(int offSet,int pageSize,String fieldName,Sort.Direction direction){
+				  
+		Page<Question> responce=questionRepository.findAll(PageRequest.of(offSet,pageSize,Sort.by(direction, fieldName)));
 		
 		Page<QuestionDTO> responce1=responce.map(this::convertToDTO);
 		return responce1;
