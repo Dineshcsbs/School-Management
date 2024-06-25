@@ -18,7 +18,7 @@ public class TutorSalary {
 	private Long id;
 	@ManyToOne
 	private Tutor tutor ;
-	private String january;
+	private String month;
 	private Double salary;
 	
 }

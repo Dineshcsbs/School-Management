@@ -5,11 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="course")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Course {
 
 
@@ -18,9 +22,7 @@ public class Course {
 	private Long id;
 	
 	private String name;
-	public Course() {
-        
-    }
+	
 	
 	public Course(Long id) {
         this.id = id;

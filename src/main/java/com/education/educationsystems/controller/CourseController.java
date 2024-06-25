@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,14 +25,14 @@ public class CourseController {
 	public Course createRecord(@RequestBody Course course) {
 		return courseService.createRecord(course);
 	}
-	
-	@DeleteMapping("/delete/{id}")
-	public Map<String,Object> deleteByIdRecord(@PathVariable Long id){
-		return courseService.deleteByIdRecord(id);
+	@GetMapping("/{courseId}")
+	public Course getCourseName(@PathVariable Long courseId) {
+		return courseService.getCourseName(courseId);
 	}
 	
-//	@GetMapping("/{id1}/{id2}")
-//	public void cc(@PathVariable("id1") int a,@PathVariable("id2")int b) {
-//		System.out.print(a+"     "+b);
-//	}
+	@DeleteMapping("/delete/{courseId}")
+	public Map<String,Object> deleteById(@PathVariable Long courseId){
+		return courseService.deleteByIdRecord(courseId);
+	}
+	
 }

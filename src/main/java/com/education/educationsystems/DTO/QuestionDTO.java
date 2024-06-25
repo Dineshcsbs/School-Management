@@ -11,7 +11,7 @@ public class QuestionDTO {
 	private String question;
 	private String option1;
 	private String option2;
-	private Long sdid;
+//	private Long sdid;
 	
 //	@Override
 //	public String toString() {

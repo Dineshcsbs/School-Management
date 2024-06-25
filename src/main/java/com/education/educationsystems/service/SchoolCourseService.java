@@ -18,7 +18,7 @@ public class SchoolCourseService {
 		return schoolCourseRepository.save(schoolCourse);
 	}
 
-	//delete a value
+	
 	public Map<String,Object> deleteByIdRecord(Long id){
 		Map<String,Object> responce=new HashMap<>();
 		boolean ifIdExit=schoolCourseRepository.existsById(id);

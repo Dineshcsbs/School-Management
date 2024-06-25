@@ -44,7 +44,7 @@ public class SchoolService {
 		return schoolCourseRepository.countBySchoolId(id);
 	}
 
-	//delete a value
+
 	public Map<String,Object> deleteByIdRecord(Long id){
 		Map<String,Object> responce=new HashMap<>();
 		boolean ifIdExit=schoolRepository.existsById(id);
@@ -57,7 +57,7 @@ public class SchoolService {
 		return responce;
 		
 	}
-	//update record
+	
 	public Map<String, Object> updateByRecord(Long id, School schoolResponce) {
 		Map<String,Object> responce=new HashMap<>();
 		Optional<School> schoolId=schoolRepository.findById(id);
@@ -66,14 +66,22 @@ public class SchoolService {
 			return responce;
 		}
 		School school=schoolId.get();
-		if(school.getAddress()!=null) {
+		if(schoolResponce.getAddress()!=null) {
 			school.setAddress(schoolResponce.getAddress());
 		}
-		if(school.getName()!=null) {
+		if(schoolResponce.getName()!=null) {
 			school.setName(schoolResponce.getName());
 		}	
 		createRecord(school);
 		responce.put("Successfully update ", id);
 		return responce;
 	}
+	
+	public List<School> getData() {
+		return this.schoolRepository.findAll();
+	}
+
+
+
+	
 }

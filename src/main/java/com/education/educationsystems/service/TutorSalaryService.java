@@ -1,6 +1,7 @@
 package com.education.educationsystems.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class TutorSalaryService {
 		}
 		responce.put("Id Not Found ", id);
 		return responce;			
+	}
+	public List<TutorSalary> retriveTutorSalary() {
+		return tutorSalaryRepository.findAll();
 	}
 
 }

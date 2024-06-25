@@ -42,12 +42,11 @@ public class StudentController {
 	
 	@GetMapping("/all-record/{id}")
 	public List<StudentAnswer> retriveAllMark(@PathVariable Long id){
-//		System.out.println(id);
 		return studentService.retriveAllMark(id);
 	}
 		
 	@GetMapping("/retrive-student-detail")
-	public StudentDetailDTO retriveStudentDetail(@RequestParam Long studentId,@RequestParam Long courseId) {
+	public List<StudentDetailDTO> retriveStudentDetail(@RequestParam Long studentId,@RequestParam Long courseId) {
 		return studentService.retriveStudentDetail(studentId, courseId);
 	}
 	@GetMapping("/search")
@@ -55,13 +54,10 @@ public class StudentController {
 		return studentService.searchStudent(name,schoolId,address);
 	}
 	
-	@GetMapping("/search/name")
-	public List<Student> searchStudentName(@RequestParam String name){
-		return studentService.searchStudentName(name);
-	}
-	@GetMapping("/search/address")
-	public List<Student> searchAddress(@RequestParam String address){
-		return studentService.searchAddress(address);
+	
+	@GetMapping("/get-all-record")
+	public List<Student> getAllRecord(){
+		return studentService.getAllRecord();
 	}
 	
 }

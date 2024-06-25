@@ -1,6 +1,7 @@
 package com.education.educationsystems.service;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,15 +43,20 @@ public class StudentService {
 		return responce;			
 	}
 	public MarkManagement retriveMark(Long studentId, Long courseId) {
-		
-		return markManagementRepository.findByStudentIdAndCourseId(studentId,courseId);
+		List<MarkManagement> studentMark=markManagementRepository.findByStudentIdAndCourseId(studentId,courseId);
+		return studentMark.get(0);
 	}
 	public List<StudentAnswer> retriveAllMark(Long studentId) {
 		return studentAnswerRepository.findAllByStudentId(studentId);
 	}
 	
-	public StudentDetailDTO retriveStudentDetail(Long studentId,Long courseId) {	
-		return updateDetails(markManagementRepository.findByStudentIdAndCourseId(studentId, courseId));	
+	public List<StudentDetailDTO> retriveStudentDetail(Long studentId,Long courseId) {
+		List<MarkManagement> studentMark=markManagementRepository.findByStudentIdAndCourseId(studentId, courseId);
+		List<StudentDetailDTO> studentDetails=new LinkedList<>();
+		for(MarkManagement mark:studentMark) {
+			studentDetails.add(updateDetails(mark));
+		}
+		return studentDetails;	
 	}
 	
 	
@@ -75,5 +81,8 @@ public class StudentService {
 	public List<Student> searchStudent(String name, Long schoolId, String address) {
 		return studentRepository.searchStudent(name,schoolId,address);
 //		return studentRepository.findByNameAndAddressAndSchoolId(name, address, schoolId);
+	}
+	public List<Student> getAllRecord() {
+		return studentRepository.findAll();
 	}
 }

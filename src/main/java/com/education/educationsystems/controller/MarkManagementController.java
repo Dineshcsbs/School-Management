@@ -1,5 +1,6 @@
 package com.education.educationsystems.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,9 @@ public class MarkManagementController {
 	}
 	
 	@GetMapping("/single-record")
-	public MarkManagement retriveSingleRecord(@RequestParam Long studentId,@RequestParam Long courseId) {
+	public List<MarkManagement> retriveSingleRecord(@RequestParam Long studentId,@RequestParam Long courseId) {
 		return markManagementService.retriveSingleRecord(studentId, courseId);
 	}
 	
-//	@GetMapping("/mark-update")
-//	public void studentMarkUpdated(Long studentId,Long courseId) {
-//		markManagementService.studentMarkUpdated(studentId,courseId);
-//	}
-	
-//	@GetMapping("/all-record-update")
-//	public void updateAllRecord() {
-//		markManagementService.updateAllRecord();
-//	}
+
 }
